@@ -8,7 +8,8 @@ public class User {
     @Id
     private String id;
     private String name;
-    private int age;
+    private String  user_id;
+    private  String  user_pw;
 
     // 생성자, getter, setter 생략
 }
