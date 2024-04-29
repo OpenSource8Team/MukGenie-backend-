@@ -1,6 +1,4 @@
-package org.example.mukgenie.DB.User;
-
-import org.example.mukgenie.DB.User.User;
+package org.example.mukgenie;
 
 import java.util.List;
 
@@ -9,4 +7,6 @@ public interface UserService {
     List<User> getAllUsers();
     User getUserById(String id);
     void deleteUserById(String id);
+
+
 }

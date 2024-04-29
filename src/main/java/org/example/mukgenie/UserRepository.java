@@ -1,6 +1,5 @@
-package org.example.mukgenie.DB.User;
+package org.example.mukgenie;
 
-import org.example.mukgenie.DB.User.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface UserRepository extends MongoRepository<User, String> {

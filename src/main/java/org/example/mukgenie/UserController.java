@@ -1,4 +1,4 @@
-package org.example.mukgenie.DB.User;
+package org.example.mukgenie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,4 +35,6 @@ public class UserController {
     public void deleteUserById(@PathVariable String id) {
         userService.deleteUserById(id);
     }
+
+
 }
