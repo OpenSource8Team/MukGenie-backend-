@@ -1,10 +1,14 @@
 package org.example.mukgenie;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 // 사용자 정보를 나타내는 모델 클래스
 @Document(collection = "User")
+@Getter
+@Setter
 public class User {
 
     @Id
