@@ -1,4 +1,4 @@
-package org.example.mukgenie;
+package org.example.mukgenie.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

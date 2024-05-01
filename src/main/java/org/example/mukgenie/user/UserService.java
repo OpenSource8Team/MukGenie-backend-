@@ -1,4 +1,4 @@
-package org.example.mukgenie;
+package org.example.mukgenie.user;
 
 import java.util.List;
 

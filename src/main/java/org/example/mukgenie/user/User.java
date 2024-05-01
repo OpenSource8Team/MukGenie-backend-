@@ -1,4 +1,4 @@
-package org.example.mukgenie;
+package org.example.mukgenie.user;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    private String Id; // 사용자 ID
+    private String id; // 사용자 ID
 
     private String name; // 사용자 이름
     private Integer age; // 사용자 나이

@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 // 서버 실행 클레스
 
 @EnableMongoRepositories
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"org.example.mukgenie"})
 public class MukGenieApplication {
 
     public static void main(String[] args) {
