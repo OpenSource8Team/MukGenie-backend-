@@ -18,7 +18,7 @@ public class UserController {
 
     // 새로운 사용자 생성
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public User signUp(@RequestBody User user) {
         return userService.signUp(user);
     }
 
