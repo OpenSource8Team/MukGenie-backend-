@@ -19,7 +19,7 @@ public class UserController {
     // 새로운 사용자 생성
     @PostMapping
     public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+        return userService.signUp(user);
     }
 
     // 모든 사용자 조회

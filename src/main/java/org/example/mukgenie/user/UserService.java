@@ -5,7 +5,7 @@ import java.util.List;
 // 사용자 관리 서비스 인터페이스
 public interface UserService {
     // 새로운 사용자 생성
-    User createUser(User user);
+    User signUp(User user);
 
     // 모든 사용자 조회
     List<User> getAllUsers();
