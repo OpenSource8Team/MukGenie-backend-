@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User signUp(User user) {
         // 사용자 비밀번호 해싱
-        String hashedPassword = bCryptPasswordEncoder.encode(user.getUser_pw());
-        user.setUser_pw(hashedPassword);
+        String hashedPassword = bCryptPasswordEncoder.encode(user.getUserPw());
+        user.setUserPw(hashedPassword);
         return userRepository.save(user);
     }
 
@@ -32,12 +32,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(String id) {
-        return userRepository.findById(id).orElse(null);
+    public User getUserByUserId(String userId) {
+        return userRepository.findByUserId(userId);
     }
 
-    @Override
-    public void deleteUserById(String id) {
-        userRepository.deleteById(id);
-    }
 }

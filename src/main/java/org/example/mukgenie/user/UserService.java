@@ -10,9 +10,7 @@ public interface UserService {
     // 모든 사용자 조회
     List<User> getAllUsers();
 
-    // 특정 ID를 가진 사용자 조회
-    User getUserById(String id);
+    // 특정 userID를 가진 사용자 조회
+    User getUserByUserId(String userId);
 
-    // 특정 ID를 가진 사용자 삭제
-    void deleteUserById(String id);
 }
