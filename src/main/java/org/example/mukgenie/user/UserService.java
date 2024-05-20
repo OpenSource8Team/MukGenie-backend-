@@ -13,4 +13,6 @@ public interface UserService {
     // 특정 userID를 가진 사용자 조회
     User getUserByUserId(String userId);
 
+    // 아이디와 비밀번호를 사용하여 로그인
+    User login(String userId, String password);
 }

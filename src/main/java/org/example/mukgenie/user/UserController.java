@@ -1,8 +1,11 @@
     package org.example.mukgenie.user;
 
     import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
     import java.util.List;
+    import java.util.Map;
 
     // 사용자 관련 HTTP 요청을 처리하는 컨트롤러
     @RestController
@@ -32,6 +35,19 @@
         @GetMapping("/UserId/{userId}")
         public User getUserByUserId(@PathVariable String userId) {
             return userService.getUserByUserId(userId);
+        }
+
+        // 아이디와 비밀번호를 사용하여 로그인
+        @PostMapping("/login")
+        public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
+            String userId = credentials.get("userId");
+            String password = credentials.get("password");
+            User user = userService.login(userId, password);
+            if (user != null) {
+                return ResponseEntity.ok(user);
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            }
         }
 
     }

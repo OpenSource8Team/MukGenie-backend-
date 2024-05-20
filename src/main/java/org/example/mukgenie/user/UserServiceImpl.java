@@ -36,4 +36,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUserId(userId);
     }
 
+    @Override
+    public User login(String userId, String password) {
+        User user = userRepository.findByUserId(userId);
+        if (user != null && bCryptPasswordEncoder.matches(password, user.getUserPw())) {
+            return user;
+        }
+        return null; // 아이디나 비밀번호가 일치하지 않는 경우 null 반환
+    }
 }
