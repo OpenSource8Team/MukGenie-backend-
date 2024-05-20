@@ -15,4 +15,7 @@ public interface UserService {
 
     // 아이디와 비밀번호를 사용하여 로그인
     User login(String userId, String password);
+
+    // 특정 아이디를 가진 사용자의 존재 여부 확인
+    boolean isUserIdExist(String userId);
 }

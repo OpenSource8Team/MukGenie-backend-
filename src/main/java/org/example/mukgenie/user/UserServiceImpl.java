@@ -44,4 +44,10 @@ public class UserServiceImpl implements UserService {
         }
         return null; // 아이디나 비밀번호가 일치하지 않는 경우 null 반환
     }
+
+    @Override
+    public boolean isUserIdExist(String userId) {
+        User user = userRepository.findByUserId(userId);
+        return user != null;
+    }
 }
