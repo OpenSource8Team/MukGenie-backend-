@@ -28,7 +28,7 @@
             return userService.getAllUsers();
         }
 
-        // 특정 userID를 가진 사용자 조회
+        // 특정 아이디를 가진 사용자 조회
         @GetMapping("/UserId/{userId}")
         public User getUserByUserId(@PathVariable String userId) {
             return userService.getUserByUserId(userId);
