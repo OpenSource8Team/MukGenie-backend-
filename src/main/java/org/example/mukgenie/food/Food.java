@@ -17,7 +17,7 @@ public class Food {
     private String country; //나라
     private Integer personnel; //인원
     private Integer price; //가격
-    private String type; //종류(면, 빵, 밥)
+    private String type; //종류(밥, 간식)
     private String allergy;//알러지
     private String cook;// 조리타입(굽기,삶기,찌기)
     private String dlike;// 못 먹는 음식
