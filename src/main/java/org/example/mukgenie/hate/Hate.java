@@ -15,6 +15,7 @@ public class Hate {
 
     @Id
     private String id; // 사용자 ID
+
     private String name; // 이름
     private List<String> foods; // 싫어하는 음식 목록
 
