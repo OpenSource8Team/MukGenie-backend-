@@ -2,9 +2,13 @@ package org.example.mukgenie.food;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
-// 사용자 관리 서비스 구현 클래스
 @Service
 public class FoodServiceImpl implements FoodService {
 
@@ -15,27 +19,62 @@ public class FoodServiceImpl implements FoodService {
         this.foodRepository = foodRepository;
     }
 
-    // 새로운 사용자 생성
     @Override
     public Food createFood(Food food) {
         return foodRepository.save(food);
     }
 
-    // 모든 사용자 조회
     @Override
     public List<Food> getAllFoods() {
         return foodRepository.findAll();
     }
 
-    // 특정 ID를 가진 사용자 조회
     @Override
     public Food getFoodById(String id) {
         return foodRepository.findById(id).orElse(null);
     }
 
-    // 특정 ID를 가진 사용자 삭제
     @Override
     public void deleteFoodById(String id) {
         foodRepository.deleteById(id);
+    }
+
+    @Override
+    public void exportToArff(String fileName, String directoryPath) {
+        List<Food> foods = foodRepository.findAll();
+        Path filePath = Path.of(directoryPath, fileName);
+        try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
+            // ARFF 파일 헤더 작성
+            writer.write("@relation FoodChoice\n\n");
+            writer.write("@attribute 나라 {한식, 일식, 중식, 양식, 기타}\n");
+            writer.write("@attribute 재료 {육류, 채소류, 곡류}\n");
+            writer.write("@attribute 온도 {1, 2, 3}\n");
+            writer.write("@attribute 맵기 {true, false}\n");
+            writer.write("@attribute 국물 {true, false}\n");
+            writer.write("@attribute 기름기 {true, false}\n");
+            writer.write("@attribute 조리타입 {끓이기, 볶기, 비조리, 삶기, 튀기기, 굽기}\n");
+            writer.write("@attribute 이름 {");
+
+            // 음식 이름 목록 작성
+            List<String> foodNames = foods.stream().map(Food::getName).toList();
+            for (int i = 0; i < foodNames.size(); i++) {
+                writer.write(foodNames.get(i));
+                if (i < foodNames.size() - 1) {
+                    writer.write(", ");
+                }
+            }
+
+            writer.write("}\n\n@data\n");
+
+            // 데이터 작성
+            for (Food food : foods) {
+                writer.write(food.getCategory() + ", " + food.getIngredient() + ", " +
+                        food.getTemperature() + ", " + food.getSpiciness() + ", " +
+                        food.getBroth() + ", " + food.getOiliness() + ", " +
+                        food.getCookingType() + ", " + food.getName() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

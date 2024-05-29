@@ -16,7 +16,7 @@ public class Food {
 
     private String name;//이름
     private String category; //나라
-    private String ingredient; //음식타입
+    private String ingredient; //재료
     private Integer temperature; //온도(1~3 숫자가 낮을 수록 뜨거움)
     private Boolean spiciness; //맵기
     private Boolean broth;//국물

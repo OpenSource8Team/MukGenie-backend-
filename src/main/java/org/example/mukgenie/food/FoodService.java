@@ -1,7 +1,5 @@
 package org.example.mukgenie.food;
 
-import org.example.mukgenie.food.Food;
-
 import java.util.List;
 
 public interface FoodService {
@@ -16,4 +14,7 @@ public interface FoodService {
 
     // 특정 ID를 가진 사용자 삭제
     void deleteFoodById(String id);
+
+    // ARFF 파일로 음식 데이터 내보내기
+    void exportToArff(String fileName, String directoryPath);
 }
