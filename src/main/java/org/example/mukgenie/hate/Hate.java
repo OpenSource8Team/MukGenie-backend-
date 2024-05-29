@@ -16,7 +16,7 @@ public class Hate {
     @Id
     private String id; // 사용자 ID
 
-    private String name; // 이름
+    private String type; // 이름
     private List<String> foods; // 싫어하는 음식 목록
 
     // 생성자, getter, setter는 Lombok에 의해 자동 생성됩니다.

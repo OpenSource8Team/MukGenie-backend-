@@ -13,20 +13,14 @@ public class Food {
 
     @Id
     private String id; // 사용자 ID
+
     private String name;//이름
-    private String country; //나라
-    private Integer personnel; //인원
-    private Integer price; //가격
-    private String type; //종류(밥, 간식)
-    private String allergy;//알러지
-    private String cook;// 조리타입(굽기,삶기,찌기)
-    private String dlike;// 못 먹는 음식
-    private Integer calorie; //칼로리
+    private String category; //나라
+    private String ingredient; //음식타입
+    private Integer temperature; //온도(1~3 숫자가 낮을 수록 뜨거움)
+    private Boolean spiciness; //맵기
+    private Boolean broth;//국물
+    private Boolean oiliness;// 기름기
+    private String cookingType;// 조리타입
 
-    private Boolean temperature;//온도
-    private Boolean spicy; //맵기
-    private Boolean soup; //국물
-    private Boolean oil; //기름
-
-    // 생성자, getter, setter는 생략되어 있습니다.
 }
