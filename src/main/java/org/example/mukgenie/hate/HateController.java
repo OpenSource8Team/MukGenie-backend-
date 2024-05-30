@@ -39,4 +39,11 @@ public class HateController {
     public void deleteHateById(@PathVariable String id) {
         hateService.deleteHateById(id);
     }
+
+    // 특정 타입들의 음식들 확인
+    @GetMapping("/allergy")
+    public List<String> getAllergyItems(@RequestParam("allergies") List<String> allergies) {
+        return hateService.getAllergyItems(allergies);
+    }
+
 }

@@ -14,4 +14,8 @@ public interface HateService {
 
     // 특정 ID를 가진 Hate 삭제
     void deleteHateById(String id);
+
+    // 특정 타입들의 음식들 확인
+    List<String> getAllergyItems(List<String> allergies);
+
 }

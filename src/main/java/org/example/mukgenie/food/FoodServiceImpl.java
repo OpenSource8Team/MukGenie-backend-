@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FoodServiceImpl implements FoodService {
@@ -56,7 +57,10 @@ public class FoodServiceImpl implements FoodService {
             writer.write("@attribute 이름 {");
 
             // 음식 이름 목록 작성
-            List<String> foodNames = foods.stream().map(Food::getName).toList();
+            List<String> foodNames = foods.stream()
+                    .filter(food -> food.getName() != null) // 이름이 null이 아닌 것만 필터링
+                    .map(Food::getName)
+                    .toList();
             for (int i = 0; i < foodNames.size(); i++) {
                 writer.write(foodNames.get(i));
                 if (i < foodNames.size() - 1) {
@@ -68,6 +72,9 @@ public class FoodServiceImpl implements FoodService {
 
             // 데이터 작성
             for (Food food : foods) {
+                if (food.getName() == null) { // 이름이 null인 경우 건너뜀
+                    continue;
+                }
                 writer.write(food.getCategory() + ", " + food.getIngredient() + ", " +
                         food.getTemperature() + ", " + food.getSpiciness() + ", " +
                         food.getBroth() + ", " + food.getOiliness() + ", " +
@@ -77,4 +84,5 @@ public class FoodServiceImpl implements FoodService {
             e.printStackTrace();
         }
     }
+
 }

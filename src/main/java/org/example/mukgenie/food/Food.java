@@ -5,6 +5,9 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+import java.util.Map;
+
 // 사용자 정보를 나타내는 모델 클래스
 @Document(collection = "Food")
 @Getter
@@ -22,5 +25,4 @@ public class Food {
     private Boolean broth;//국물
     private Boolean oiliness;// 기름기
     private String cookingType;// 조리타입
-
 }
