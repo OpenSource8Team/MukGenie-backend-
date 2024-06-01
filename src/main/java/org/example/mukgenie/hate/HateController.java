@@ -41,6 +41,7 @@ public class HateController {
     }
 
     // 특정 타입들의 음식들 확인
+    //GET http://localhost:8080/hate/allergy?allergies=우유&allergies=어폐류
     @GetMapping("/allergy")
     public List<String> getAllergyItems(@RequestParam("allergies") List<String> allergies) {
         return hateService.getAllergyItems(allergies);
