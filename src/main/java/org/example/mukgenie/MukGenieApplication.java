@@ -22,10 +22,8 @@ public class MukGenieApplication implements ApplicationRunner {
     }
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         // 애플리케이션이 시작될 때 exportToArff 메서드를 호출합니다.
-        String fileName = "FoodChoice.arff";
-        String directoryPath = "src/main/resources";
-        foodService.exportToArff(fileName, directoryPath);
+        foodService.exportToArff();
     }
 }

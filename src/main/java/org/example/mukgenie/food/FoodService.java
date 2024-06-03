@@ -16,5 +16,5 @@ public interface FoodService {
     void deleteFoodById(String id);
 
     // ARFF 파일로 음식 데이터 내보내기
-    void exportToArff(String fileName, String directoryPath);
+    void exportToArff();
 }

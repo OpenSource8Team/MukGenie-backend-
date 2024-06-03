@@ -1,6 +1,7 @@
 package org.example.mukgenie.food;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,4 +36,11 @@ public class FoodController {
     public void deleteFoodById(@PathVariable String id) {
         foodService.deleteFoodById(id);
     }
+
+    @GetMapping("/arff")
+    public void exportToArff() {
+    foodService.exportToArff();
+    }
 }
+
+

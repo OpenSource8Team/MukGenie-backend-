@@ -2,14 +2,17 @@ package org.example.mukgenie.hate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import weka.core.Instances;
+import weka.core.converters.ArffLoader;
+import weka.core.converters.ArffSaver;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.io.*;
-import java.nio.file.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 // Spring의 서비스로 등록되는 HateService 인터페이스의 구현체
 @Service
@@ -51,68 +54,42 @@ public class HateServiceImpl implements HateService {
         // HateRepository를 사용하여 특정 ID를 가진 Hate 객체를 삭제
         hateRepository.deleteById(id);
     }
+    // 주어진 알레르기 항목을 기반으로 ARFF 파일에서 해당 항목을 제거
+    public void removeItemsFromARFF(List<String> allergies) throws Exception {
+        // ARFF 파일 로드
+        ArffLoader loader = new ArffLoader();
+        loader.setSource(new File("src/main/resources/FoodChoice.arff"));
+        Instances data = loader.getDataSet();
 
-    //주어진 알러지 목록을 기반으로 ARFF 파일에서 해당 알러지에 해당하는 항목을 제거
-    public void removeItemsFromARFF(List<String> allergies) throws IOException {
-        // 알러지 항목을 담을 집합 생성 (중복 허용 안 함)
-        Set<String> allergyItems = new HashSet<>();
-        // 모든 Hate 객체를 조회
-        List<Hate> hates = hateRepository.findAll();
-        // 모든 Hate 객체에 대해 반복
-        for (Hate hate : hates) {
-            // 각 Hate 객체의 알러지 데이터 맵 조회
-            Map<String, List<String>> allergyData = hate.getAllergy();
-            // 요청으로 받은 알러지 유형들에 대해 반복
-            for (String allergy : allergies) {
-                // 알러지 데이터 맵에 해당 알러지가 존재하는지 확인
-                if (allergyData.containsKey(allergy)) {
-                    // 해당 알러지에 대한 항목들을 알러지 항목 집합에 추가
-                    allergyItems.addAll(allergyData.get(allergy));
-                }
-            }
-        }
+        // ARFF 파일의 속성 중 알레르기 항목을 제거할 속성 인덱스 찾기
+        int[] attributeIndicesToRemove = findAttributeIndicesToRemove(data, allergies);
 
-        // 집합을 리스트로 변환
-        List<String> allergyItemList = new ArrayList<>(allergyItems);
-        System.out.println(allergyItemList);
+        // Remove 필터를 사용하여 알레르기 항목 제거
+        Remove remove = new Remove();
+        remove.setAttributeIndicesArray(attributeIndicesToRemove);
+        remove.setInputFormat(data);
+        Instances newData = Filter.useFilter(data, remove);
 
-        // ARFF 파일 읽기
-        File file = new File("src/main/resources/FoodChoice.arff");
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        List<String> lines = new ArrayList<>();
-        String line;
-        boolean dataFound = false;
-        while ((line = reader.readLine()) != null) {
-            if (dataFound) {
-                // @data 이후의 줄에 대해서만 처리
-                boolean containsAllergyItem = false;
-                for (String allergyItem : allergyItemList) {
-                    if (line.contains(allergyItem)) {
-                        containsAllergyItem = true;
-                        break;
-                    }
-                }
-                // allergyItemList에 포함된 단어가 없는 줄만 리스트에 추가
-                if (!containsAllergyItem) {
-                    lines.add(line);
-                }
-            } else {
-                lines.add(line);
-                if (line.trim().equals("@data")) {
-                    // @data를 찾으면 이후의 줄부터 처리
-                    dataFound = true;
-                }
-            }
-        }
-        reader.close();
-
-        // ARFF 파일 다시 쓰기
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        for (String outputLine : lines) {
-            writer.write(outputLine + "\n");
-        }
-        writer.close();
+        // 제거된 데이터를 ARFF 파일로 저장
+        ArffSaver saver = new ArffSaver();
+        saver.setInstances(newData);
+        saver.setFile(new File("src/main/resources/FoodChoiceModified.arff"));
+        saver.writeBatch();
     }
+
+    // ARFF 파일의 속성 중 알레르기 항목을 제거할 속성 인덱스를 찾는 메서드
+    private int[] findAttributeIndicesToRemove(Instances data, List<String> allergies) {
+        List<Integer> indices = new ArrayList<>();
+        // 속성 이름과 알레르기 항목을 비교하여 제거할 속성 인덱스 찾기
+        for (int i = 0; i < data.numAttributes(); i++) {
+            String attributeName = data.attribute(i).name();
+            if (allergies.contains(attributeName)) {
+                indices.add(i + 1); // Weka는 인덱스를 1부터 시작합니다.
+            }
+        }
+        return indices.stream().mapToInt(i -> i).toArray();
+    }
+
 
 }
 

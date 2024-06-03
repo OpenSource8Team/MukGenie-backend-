@@ -16,5 +16,5 @@ public interface HateService {
     // 특정 ID를 가진 Hate 삭제
     void deleteHateById(String id);
 
-    void removeItemsFromARFF (List<String> allergies) throws IOException;
+    void removeItemsFromARFF (List<String> allergies) throws Exception;
 }

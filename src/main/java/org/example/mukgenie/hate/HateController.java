@@ -44,7 +44,7 @@ public class HateController {
 
     // 특정 타입들의 음식들 확인
     @GetMapping("/allergy")
-    public void getAllergyItems(@RequestParam("allergies") List<String> allergies) throws IOException {
+    public void getAllergyItems(@RequestParam("allergies") List<String> allergies) throws Exception {
         hateService.removeItemsFromARFF(allergies);
     }
 
