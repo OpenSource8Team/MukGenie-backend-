@@ -1,6 +1,5 @@
 package org.example.mukgenie.hate;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface HateService {
@@ -16,5 +15,5 @@ public interface HateService {
     // 특정 ID를 가진 Hate 삭제
     void deleteHateById(String id);
 
-    void removeItemsFromARFF (List<String> allergies) throws Exception;
+    void createModifiedARFF(List<String> allergies) throws Exception;
 }

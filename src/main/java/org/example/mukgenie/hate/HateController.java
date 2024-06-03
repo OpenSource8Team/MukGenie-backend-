@@ -3,7 +3,6 @@ package org.example.mukgenie.hate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 // Hate 관련 HTTP 요청을 처리하는 컨트롤러
@@ -45,7 +44,7 @@ public class HateController {
     // 특정 타입들의 음식들 확인
     @GetMapping("/allergy")
     public void getAllergyItems(@RequestParam("allergies") List<String> allergies) throws Exception {
-        hateService.removeItemsFromARFF(allergies);
+        hateService.createModifiedARFF(allergies);
     }
 
 }
