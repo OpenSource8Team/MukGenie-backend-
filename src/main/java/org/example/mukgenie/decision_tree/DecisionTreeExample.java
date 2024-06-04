@@ -29,13 +29,13 @@ public class DecisionTreeExample {
 
             // 새로운 입력값으로 예측 수행
             double[] values = new double[data.numAttributes()];
-            values[0] = data.attribute(0).indexOfValue("한식"); // 나라
+            values[0] = data.attribute(0).indexOfValue("양식"); // 나라
             values[1] = data.attribute(1).indexOfValue("곡류"); // 재료
             values[2] = data.attribute(2).indexOfValue("1"); // 온도
             values[3] = data.attribute(3).indexOfValue("false"); // 맵기
             values[4] = data.attribute(4).indexOfValue("false"); // 국물
             values[5] = data.attribute(5).indexOfValue("true"); // 기름기
-            values[6] = data.attribute(6).indexOfValue("굽기"); // 조리타입
+            values[6] = data.attribute(6).indexOfValue("볶기"); // 조리타입
             // 입력값으로 Instance 객체 생성
             DenseInstance newInstance = new DenseInstance(1.0, values);
             newInstance.setDataset(data);
