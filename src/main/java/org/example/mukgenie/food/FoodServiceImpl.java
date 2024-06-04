@@ -1,5 +1,6 @@
 package org.example.mukgenie.food;
 
+import org.example.mukgenie.decision_tree.MainQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class FoodServiceImpl implements FoodService {
@@ -38,6 +38,11 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public void deleteFoodById(String id) {
         foodRepository.deleteById(id);
+    }
+
+    @Override
+    public String returnSurveyResult(MainQuestion surveyResult) {
+        return surveyResult.toString();
     }
 
     @Override
@@ -84,5 +89,4 @@ public class FoodServiceImpl implements FoodService {
             e.printStackTrace();
         }
     }
-
 }
