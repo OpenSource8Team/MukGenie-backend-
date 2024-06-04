@@ -24,4 +24,22 @@ public class LogServiceImpl implements LogService {
             return Collections.emptyList();
         }
     }
+
+    @Override
+    public void deleteFoodByName(String userId, String foodName) {
+        Log log = logRepository.findByUserId(userId);
+        if (log != null && log.getFoods() != null) {
+            log.getFoods().remove(foodName);
+            logRepository.save(log);
+        }
+    }
+
+    @Override
+    public void addFood(String userId, String foodName) {
+        Log log = logRepository.findByUserId(userId);
+        if (log != null && log.getFoods() != null) {
+            log.getFoods().add(foodName);
+            logRepository.save(log);
+        }
+    }
 }
