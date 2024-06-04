@@ -23,33 +23,6 @@ public class HateServiceImpl implements HateService {
         this.hateRepository = hateRepository;
     }
 
-    // 새로운 Hate 생성 메서드 구현
-    @Override
-    public Hate createHate(Hate hate) {
-        // HateRepository를 사용하여 Hate 객체를 저장하고 반환
-        return hateRepository.save(hate);
-    }
-
-    // 모든 Hate 조회 메서드 구현
-    @Override
-    public List<Hate> getAllHates() {
-        // HateRepository를 사용하여 모든 Hate 객체를 조회하고 반환
-        return hateRepository.findAll();
-    }
-
-    // 특정 ID를 가진 Hate 조회 메서드 구현
-    @Override
-    public Hate getHateById(String id) {
-        // HateRepository를 사용하여 특정 ID를 가진 Hate 객체를 조회하고 반환
-        return hateRepository.findById(id).orElse(null);
-    }
-
-    // 특정 ID를 가진 Hate 삭제 메서드 구현
-    @Override
-    public void deleteHateById(String id) {
-        // HateRepository를 사용하여 특정 ID를 가진 Hate 객체를 삭제
-        hateRepository.deleteById(id);
-    }
 
     // 주어진 알러지 목록을 기반으로 ARFF 파일에서 해당 알러지에 해당하는 항목을 제거하여 새로운 파일 생성
     public void createModifiedARFF(List<String> allergies) throws IOException {

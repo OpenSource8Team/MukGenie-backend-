@@ -17,30 +17,6 @@ public class HateController {
         this.hateService = hateService;
     }
 
-    // 새로운 Hate 생성
-    @PostMapping
-    public Hate createHate(@RequestBody Hate hate) {
-        return hateService.createHate(hate);
-    }
-
-    // 모든 Hate 조회
-    @GetMapping
-    public List<Hate> getAllHates() {
-        return hateService.getAllHates();
-    }
-
-    // 특정 ID를 가진 Hate 조회
-    @GetMapping("/{id}")
-    public Hate getHateById(@PathVariable String id) {
-        return hateService.getHateById(id);
-    }
-
-    // 특정 ID를 가진 Hate 삭제
-    @DeleteMapping("/{id}")
-    public void deleteHateById(@PathVariable String id) {
-        hateService.deleteHateById(id);
-    }
-
     // 특정 타입들의 음식들 확인
     @GetMapping("/allergy")
     public void getAllergyItems(@RequestParam("allergies") List<String> allergies) throws Exception {

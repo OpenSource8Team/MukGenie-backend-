@@ -23,25 +23,6 @@ public class FoodServiceImpl implements FoodService {
         this.foodRepository = foodRepository;
     }
 
-    @Override
-    public Food createFood(Food food) {
-        return foodRepository.save(food);
-    }
-
-    @Override
-    public List<Food> getAllFoods() {
-        return foodRepository.findAll();
-    }
-
-    @Override
-    public Food getFoodById(String id) {
-        return foodRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public void deleteFoodById(String id) {
-        foodRepository.deleteById(id);
-    }
 
     @Override
     public void exportToArff() {

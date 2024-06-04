@@ -17,26 +17,6 @@ public class FoodController {
         this.foodService = foodService;
     }
 
-    @PostMapping
-    public Food createFood(@RequestBody Food food) {
-        return foodService.createFood(food);
-    }
-
-    @GetMapping
-    public List<Food> getAllFoods() {
-        return foodService.getAllFoods();
-    }
-
-    @GetMapping("/{id}")
-    public Food getFoodById(@PathVariable String id) {
-        return foodService.getFoodById(id);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteFoodById(@PathVariable String id) {
-        foodService.deleteFoodById(id);
-    }
-
     @GetMapping("/arff")
     public void exportToArff() {
     foodService.exportToArff();

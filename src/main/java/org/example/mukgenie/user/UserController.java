@@ -25,12 +25,6 @@ public class UserController {
         return userService.signUp(user);
     }
 
-    // 모든 사용자 조회
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
-
     // 특정 아이디를 가진 사용자 조회
     @GetMapping("/UserId/{userId}")
     public User getUserByUserId(@PathVariable String userId) {
