@@ -1,10 +1,7 @@
 package org.example.mukgenie.food;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/foods")
@@ -19,8 +16,18 @@ public class FoodController {
 
     @GetMapping("/arff")
     public void exportToArff() {
-    foodService.exportToArff();
+        foodService.exportToArff();
+    }
+
+    @GetMapping("/result")
+    public String getResult(
+            @RequestParam String category,
+            @RequestParam String ingredient,
+            @RequestParam int temperature,
+            @RequestParam boolean spiciness,
+            @RequestParam boolean broth,
+            @RequestParam boolean oiliness,
+            @RequestParam String cookingType) {
+        return foodService.classify(category, ingredient, temperature, spiciness, broth, oiliness, cookingType);
     }
 }
-
-
