@@ -17,7 +17,7 @@ public class HateController {
         this.hateService = hateService;
     }
 
-    // 특정 타입들의 음식들 확인
+    // GET http://localhost:8080/hate/allergy?allergies=육류&allergies=대두
     @GetMapping("/allergy")
     public void getAllergyItems(@RequestParam("allergies") List<String> allergies) throws Exception {
         hateService.createModifiedARFF(allergies);
