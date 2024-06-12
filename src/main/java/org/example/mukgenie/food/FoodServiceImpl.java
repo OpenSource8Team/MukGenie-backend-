@@ -45,8 +45,11 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public void exportToArff() {
+        createArffFile("FoodChoice.arff");
+        createArffFile("FoodChoiceModified.arff");
+    }
 
-        String fileName = "FoodChoice.arff";
+    private void createArffFile(String fileName) {
         String directoryPath = "src/main/resources";
 
         List<Food> foods = foodRepository.findAll();

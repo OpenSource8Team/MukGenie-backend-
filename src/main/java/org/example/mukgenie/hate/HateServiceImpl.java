@@ -23,9 +23,16 @@ public class HateServiceImpl implements HateService {
         this.hateRepository = hateRepository;
     }
 
-
     // 주어진 알러지 목록을 기반으로 ARFF 파일에서 해당 알러지에 해당하는 항목을 제거하여 새로운 파일 생성
     public void createModifiedARFF(List<String> allergies) throws IOException {
+        // 알러지가 'none'인 경우 기존 파일을 그대로 복사
+        if (allergies.contains("none")) {
+            File inputFile = new File("src/main/resources/FoodChoice.arff");
+            File outputFile = new File("src/main/resources/FoodChoiceModified.arff");
+            copyFile(inputFile, outputFile);
+            return;
+        }
+
         // 알러지 항목을 담을 집합 생성 (중복 허용 안 함)
         Set<String> allergyItems = new HashSet<>();
         // 모든 Hate 객체를 조회
@@ -81,5 +88,16 @@ public class HateServiceImpl implements HateService {
         }
         reader.close();
         writer.close();
+    }
+
+    // 파일 복사 메서드
+    private void copyFile(File source, File destination) throws IOException {
+        try (InputStream in = new FileInputStream(source); OutputStream out = new FileOutputStream(destination)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
+            }
+        }
     }
 }
