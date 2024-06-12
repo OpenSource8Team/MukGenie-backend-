@@ -3,6 +3,7 @@ package org.example.mukgenie.log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,9 +38,15 @@ public class LogServiceImpl implements LogService {
     @Override
     public void addFood(String userId, String foodName) {
         Log log = logRepository.findByUserId(userId);
-        if (log != null && log.getFoods() != null) {
-            log.getFoods().add(foodName);
-            logRepository.save(log);
+        if (log == null) {
+            log = new Log();
+            log.setUserId(userId);
+            log.setFoods(new ArrayList<>());
         }
+        if (log.getFoods() == null) {
+            log.setFoods(new ArrayList<>());
+        }
+        log.getFoods().add(foodName);
+        logRepository.save(log);
     }
 }
