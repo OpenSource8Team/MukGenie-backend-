@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class LogServiceImpl implements LogService {
+    private static final int MAX_FOODS_SIZE = 20;
     private final LogRepository logRepository;
 
     @Autowired
@@ -46,7 +47,14 @@ public class LogServiceImpl implements LogService {
         if (log.getFoods() == null) {
             log.setFoods(new ArrayList<>());
         }
-        log.getFoods().add(foodName);
+        List<String> foods = log.getFoods();
+
+        // 배열 크기가 MAX_FOODS_SIZE를 초과하면 오래된 항목을 제거
+        if (foods.size() >= MAX_FOODS_SIZE) {
+            foods.remove(0);  // 첫 번째 항목 제거 (오래된 항목)
+        }
+
+        foods.add(foodName);
         logRepository.save(log);
     }
 }
