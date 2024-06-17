@@ -16,6 +16,6 @@ public class Hate {
     @Id
     private String id;
 
-    private Map<String, List<String>> allergy;
+    private Map<String, List<String>> allergy; //싫어하는 음식
 
 }

@@ -18,15 +18,17 @@ import java.util.List;
 public class FoodServiceImpl implements FoodService {
 
     private final FoodRepository foodRepository;
-    private J48 tree;
-    private Instances data;
+    private J48 tree; // J48 의사결정트리 객체
+    private Instances data; // WEKA 데이터셋 객체
 
+    // @Autowired: Spring이 자동으로 필요한 의존성을 주입합니다.
     @Autowired
     public FoodServiceImpl(FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
-        initializeDecisionTree();
+        initializeDecisionTree(); // 의사결정트리 초기화 메서드 호출
     }
 
+    // 의사결정트리를 초기화하고 훈련하는 메서드
     private void initializeDecisionTree() {
         try {
             // ARFF 파일 로드
@@ -43,16 +45,18 @@ public class FoodServiceImpl implements FoodService {
         }
     }
 
+    // ARFF 파일을 생성하는 메서드
     @Override
     public void exportToArff() {
         createArffFile("FoodChoice.arff");
         createArffFile("FoodChoiceModified.arff");
     }
 
+    // 주어진 파일 이름으로 ARFF 파일을 생성하는 메서드
     private void createArffFile(String fileName) {
-        String directoryPath = "src/main/resources";
+        String directoryPath = "src/main/resources"; // 파일 경로
 
-        List<Food> foods = foodRepository.findAll();
+        List<Food> foods = foodRepository.findAll(); // 모든 음식 데이터를 데이터베이스에서 조회
         Path filePath = Path.of(directoryPath, fileName);
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             // ARFF 파일 헤더 작성
@@ -95,9 +99,11 @@ public class FoodServiceImpl implements FoodService {
         }
     }
 
+    // 분류 메서드
     @Override
     public String classify(String category, String ingredient, int temperature, boolean spiciness, boolean broth, boolean oiliness, String cookingType) {
         try {
+            // 새로운 인스턴스를 생성
             double[] values = new double[data.numAttributes()];
             values[0] = data.attribute(0).indexOfValue(category);
             values[1] = data.attribute(1).indexOfValue(ingredient);
@@ -108,8 +114,9 @@ public class FoodServiceImpl implements FoodService {
             values[6] = data.attribute(6).indexOfValue(cookingType);
 
             DenseInstance newInstance = new DenseInstance(1.0, values);
-            newInstance.setDataset(data);
+            newInstance.setDataset(data); // 데이터셋 설정
 
+            // 분류 결과 반환
             double result = tree.classifyInstance(newInstance);
             return data.classAttribute().value((int) result);
         } catch (Exception e) {

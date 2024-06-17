@@ -14,7 +14,7 @@ public class Log {
     @Id
     private String id;
 
-    private String userId;
-    private List<String> foods;
+    private String userId; // 유저id
+    private List<String> foods; // 음식 목록
 }
 
