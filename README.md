@@ -64,20 +64,20 @@
 ### 프로그램 실행 화면 (시나리오 과정)
 
 1. 사용자가 메뉴 추천 프로그램을 사용하여 음식(메뉴)을 선택하는 과정
-   ![화면 1](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/6264059c-5310-4465-851c-c9080461e4a6)
+   ![화면 1](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/6264059c-5310-4465-851c-c9080461e4a6_small)
    
 2. 회원가입/로그인 기능을 통해 회원정보를 입력하고 메인 페이지로 이동
-   ![화면 2](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/e9320069-e8e5-4d43-a2f6-ebcb2dc2edd4)
+   ![화면 2](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/e9320069-e8e5-4d43-a2f6-ebcb2dc2edd4_small)
    
 3. 질문 대기 페이지에서 토큰 인증 시스템과 로그 기록 기능으로 이전 결과 확인
-   ![화면 3](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/87a08ef7-7704-47b0-9734-0e043b9d8008)
+   ![화면 3](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/87a08ef7-7704-47b0-9734-0e043b9d8008_small)
    
 4. 호불호/알러지 유발 식품 필터링을 거친 후 메뉴 선정 질문 시작
-   ![화면 4](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/162e31ea-5fa4-4c23-8f82-9fd09b96f470)
+   ![화면 4](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/162e31ea-5fa4-4c23-8f82-9fd09b96f470_small)
    
 5. 질문 타입에 따른 메뉴 선택과 관련된 질문을 최소 7개 이상 거친 후 최종 결과 확인
-   ![화면 5](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/08d8e8a3-0e9e-4612-9358-a54d3c58cd9a)
+   ![화면 5](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/08d8e8a3-0e9e-4612-9358-a54d3c58cd9a_small)
    
 6. 선택된 메뉴에 대한 유튜브 레시피 영상과 네이버 지도를 통한 음식점 검색 화면
-   ![화면 6](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/18b7ac7f-eda6-4837-b1b1-ef5b97ae31dd)
-   ![화면 7](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/c2cf807b-26bb-46e0-a172-75a0be5d0053)
+   ![화면 6](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/18b7ac7f-eda6-4837-b1b1-ef5b97ae31dd_small)
+   ![화면 7](https://github.com/OpenSource8Team/MukGenie-backend-/assets/108183797/c2cf807b-26bb-46e0-a172-75a0be5d0053_small)
